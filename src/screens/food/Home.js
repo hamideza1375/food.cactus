@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './Food.module.scss'
 import { Loading, Button, Img, P, Scroll, Span, Press, FlatList } from '../../Components/Html';
 import Svg from './other/Svg';
@@ -11,6 +11,8 @@ const Home = (p) => {
   p._food.backHandler()
   p._user._token()
   p._user._tokenValue()
+  p._user.getLastPayment()
+
 
   return (
     <Span class={s.container}>
@@ -63,9 +65,9 @@ const Home = (p) => {
         />)
       }
 
-<Span bgcolor='#0fba' ph={7} br={5} style={{marginTop:'auto'}}>
-        <P fs={13}>سفارش شما در حال آماده سازی برای ارسال هست</P>
-    </Span>
+{p.lastPayment.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{marginTop:'auto'}}>
+        <P>سفارش شما در حال آماده سازی و ارسال هست</P>
+    </Span>}
     </Span>
   )
 }

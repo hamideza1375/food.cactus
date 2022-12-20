@@ -115,7 +115,10 @@ export function adminState(p) {
         { text: "Cancel", onPress: () => { } },
         { text: "OK", onPress: async () => { 
           p.setshowActivity(true)
-          await p.deleteAddress(_id); p.setchange(!p.change); } }
+          await p.deleteAddress(_id); p.setchange(!p.change);
+          await p.senddisablePayment({userId:p.tokenValue.userId});
+         } }
+          
       ])
   }
 

@@ -9,12 +9,13 @@ const Location = (p) => {
 	useEffect(() => {
 		require('../../other/leaflet/leaflet')
 
+		let dataSave;
 		const origin = p.route.params?.origin
 
 		let mark = origin ? { lat: origin.latitude, lng: origin.longitude } : { lat: 36.214174234928924, lng: 57.68491965736432 }
 		let mark2 = { lat: 1.214174234928924, lng: 1.68491965736432 }
 
-		var map = L.map('map', { center: mark, zoom: 16, })
+		var map = L.map('map', { center: mark, zoom: 17, })
 
 		var myIcon = L.icon({ iconUrl: `${localhost}/images/mark.png`, iconSize: [38, 95], iconAnchor: [22, 94], popupAnchor: [-3, -76], shadowSize: [68, 95], shadowAnchor: [22, 94], });
 		let markerOption = { draggable: origin ? false : true, icon: myIcon }
@@ -43,13 +44,12 @@ const Location = (p) => {
 					const street = one + ' ' + two + ' ' + three
 					revers = data[0]
 					marker.bindPopup(street).openPopup()
-					document.getElementById('address').innerHTML = street
+					document.getElementById('address').value = street
 					setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
 				}
 			}
 		})()
 
-		document.getElementById('bottomDiv').style.visibility = 'hidden'
 
 		map.on('click',()=>{
 			document.getElementById('bottomDiv').style.visibility = 'visible'
@@ -57,6 +57,9 @@ const Location = (p) => {
 
 		if(!origin){
 			map.on('drag',()=>{
+				document.getElementById('bottomDiv').style.visibility = 'hidden'
+			})
+			map.on('dragend',()=>{
 				document.getElementById('bottomDiv').style.visibility = 'visible'
 			})
 			marker.on('dragstart', async (ev) => {
@@ -80,7 +83,7 @@ const Location = (p) => {
 					revers = data[0]
 					const street = one + ' ' + two + ' ' + three
 					marker.bindPopup(street).openPopup()
-					document.getElementById('address').innerHTML = street
+					document.getElementById('address').value = street
 				}
 			}
 		});
@@ -100,11 +103,11 @@ const Location = (p) => {
 					map.setView({ lat: data[0].latitude, lng: data[0].longitude });
 					marker.setLatLng({ lat: data[0].latitude, lng: data[0].longitude })
 					marker.bindPopup(street.trim() ? street : '!پیدا نشد').openPopup()
-					document.getElementById('address').innerHTML = street
+					document.getElementById('address').value = street
 				}
 				else {
 					marker.bindPopup('!پیدا نشد ').openPopup()
-					document.getElementById('address').innerHTML = street
+					document.getElementById('address').value = street
 				}
 			}
 		}
@@ -119,9 +122,10 @@ const Location = (p) => {
 				foods: p.totalTitle,
 				plaque: document.getElementById('plaque').value,
 				floor: document.getElementById('floor').value,
-				formattedAddress: JSON.stringify(revers.formattedAddress),
+				formattedAddress: document.getElementById('address').value,
 				streetName: JSON.stringify(revers.streetName),
-				origin: JSON.stringify(revers)
+				origin: JSON.stringify(revers),
+				enablePayment:1
 			})
 			// if (status === 200) window.open(data)
 			if (status === 200) p.navigation.replace('Payment', { url: data })
@@ -151,8 +155,10 @@ const Location = (p) => {
 
    if(!origin){
 	   marker.setLatLng(e.latlng)
+	   map.setZoom(17)
 			const response = await axios.post(`${localhost}/reverse`, JSON.stringify({ lat: e.latlng.lat, lng: e.latlng.lng }), { headers: { 'Content-Type': 'application/json' } })
 			if (response.status) {
+				dataSave = await response.data
 				const data = await response.data
 				if (data[0]) {
 					const one = (data[0].streetName && data[0].streetName !== data[0].formattedAddress.split(",")[0]) ? data[0].streetName : ''
@@ -161,8 +167,11 @@ const Location = (p) => {
 					const street = one + ' ' + two + ' ' + three
 					revers = data[0]
 					marker.bindPopup(street).openPopup()
-					document.getElementById('address').innerHTML = street
+					document.getElementById('address').value = street
 					setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
+					map.setView(e.latlng)
+		      document.getElementById('bottomDiv').style.visibility = 'visible'
+
 				}
 			}
 }			
@@ -185,53 +194,45 @@ const Location = (p) => {
 
 
 
-		document.getElementById('btnGetLocation').onclick = () => {
+		document.getElementById('btnGetLocation').onclick = async() => {
+
+
+
+
+			if (dataSave[0]) {
+			
+        if(!origin){
+			  marker.setLatLng({ lat: dataSave[0].latitude, lng: dataSave[0].longitude })
+				// map.setZoom(17)
+        map.setView({ lat: dataSave[0].latitude, lng: dataSave[0].longitude },17);
+
+					const one = (dataSave[0].streetName && dataSave[0].streetName !== dataSave[0].formattedAddress.split(",")[0]) ? dataSave[0].streetName : ''
+					const two = dataSave[0].formattedAddress.split(",")[0] ? dataSave[0].formattedAddress.split(",")[0] : ''
+					const three = dataSave[0].formattedAddress.split(",")[1] ? dataSave[0].formattedAddress.split(",")[1] : ''
+					const street = one + ' ' + two + ' ' + three
+					revers = dataSave[0]
+					marker.bindPopup(street).openPopup()
+					document.getElementById('address').value = street
+					setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
+				}
+}
+
+
 
 			function onLocationError(e) { alert('مرورگر شما نمیتواند از سرویس موقعیت مکانی استفاده کند'); }
 			async function onLocationFound(e) {
 
-              
-
-
-
-        if(!origin){
-			  marker.setLatLng(e.latlng)
-			const response = await axios.post(`${localhost}/reverse`, JSON.stringify({ lat: e.latlng.lat, lng: e.latlng.lng }), { headers: { 'Content-Type': 'application/json' } })
-			if (response.status) {
-				const data = await response.data
-				if (data[0]) {
-					const one = (data[0].streetName && data[0].streetName !== data[0].formattedAddress.split(",")[0]) ? data[0].streetName : ''
-					const two = data[0].formattedAddress.split(",")[0] ? data[0].formattedAddress.split(",")[0] : ''
-					const three = data[0].formattedAddress.split(",")[1] ? data[0].formattedAddress.split(",")[1] : ''
-					const street = one + ' ' + two + ' ' + three
-					revers = data[0]
-					marker.bindPopup(street).openPopup()
-					document.getElementById('address').innerHTML = street
-					setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
-				}
-			}
-}
 
 
 		circle1.setLatLng(e.latlng)
 		circle2.setLatLng(e.latlng)
 
 
-
-if(!origin)
-map.setZoom(16)
-
-setTimeout(()=>{map.setView(e.latlng);},1000)
-
-map.setView({ lat: data[0].latitude, lng: data[0].longitude });
-
 			}
 			map.on('locationfound', onLocationFound);
 			map.on('locationerror', onLocationError);
 
-   if(!origin)
-		    map.locate({ watch: false, setView: false })
-	else
+   if(origin)
 		    map.locate({ watch: true, setView: true })
 		}
 
@@ -257,13 +258,13 @@ map.setView({ lat: data[0].latitude, lng: data[0].longitude });
 			<button id='btnGetLocation' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: '#fff', padding: '1px 1px 2px', borderRadius: '4px', zIndex: 10000, position: 'absolute', top: 50, right: 10, fontSize: 20, height: 32, maxHeight: 35, width: 28, borderWidth: 0, boxShadow: '.2px 1.5px 4px #333d' }}><p style={{ transform: 'rotate(-65deg)', padding: 0, margin: 0, marginTop: -2 }}>⌲</p></button>
 			<div id="map" style={{ width: '100%', height: 'calc(99vh)', position:'fixed', bottom:0, left:0, }}></div>
  
-			<div id='bottomDiv' style={{ visibility: p.route.params?.origin ? 'hidden' : 'visible', zIndex: 10000, position: 'fixed', bottom: 0, width: '100%', background: '#fff', padding: '15px', boxSizing:'border-box' }}>
+			<div id='bottomDiv' style={{ visibility: 'hidden', zIndex: 10000, position: 'fixed', bottom: 0, width: '100%', background: '#fff', padding: '15px', boxSizing:'border-box' }}>
 				<div id='bottomDiv2' style={{ display: 'flex', justifyContent: 'flex-start', width: '100%', background: '#fff', padding: '8px 0 8px', flexDirection: 'row' }}>
 					<span style={{ display: 'flex', flexDirection: 'row-reverse' }}> <input type='number' style={{ textAlign: 'center', width: '45px', height: '35px', border: '.2px solid #999', borderRadius: 3 }} id='plaque' /><p style={{ margin: '7px 5px' }} >پلاک:</p> </span>
 					<span style={{ display: 'flex', flexDirection: 'row-reverse' }} > <input type='number' style={{ textAlign: 'center', width: '45px', height: '35px', border: '.2px solid #999', borderRadius: 3 }} id='floor' /><p style={{ margin: '7px 5px' }} >طبقه:</p></span>
 					<button id='btnPayment' style={{ display: 'block', marginTop:-3,marginRight: 12, border: '1px solid #3af', background: "#3afa", height: '42px', width: '75px', fontSize: '15px', borderRadius: '5px', color: '#444', }} >پرداخت</button>
 				</div>
-				<span style={{ display: 'flex', flexDirection: 'row-reverse', width: '100%', justifyContent: 'flex-end' }} ><p id='address' style={{ margin: '9px 0px' }}></p><p style={{ margin: '7px 5px' }} >ادرس:</p></span>
+				<span style={{ display: 'flex', flexDirection: 'row-reverse', width: '100%', justifyContent: 'flex-end' }} ><input type='text' id='address' style={{ margin: '9px 0px', width:'80%' }}/><p style={{ margin: '7px 5px' }} >ادرس:</p></span>
 			</div>
 		</div>
 	);

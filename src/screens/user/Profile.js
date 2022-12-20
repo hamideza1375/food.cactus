@@ -2,7 +2,6 @@ import React from 'react'
 import { B_icon, Button, Img, P, Press, Span, Scroll } from '../../Components/Html'
 import s from './User.module.scss';
 import share from '../../utils/share'
-import { Platform } from 'react-native';
 
 const Profile = (p) => {
   p._food.getImageProfile()

@@ -19,4 +19,4 @@ export const useradmin = (data) => axios.post(`${localhost}/useradmin/`, data)
 export const deleteAdmin = (data) => axios.post(`${localhost}/deleteadmin/`, data)
 export const getAlluserAdmin = () => axios.get(`${localhost}/alluserAdmin/`)
 export const changeAdmin = (data) => axios.post(`${localhost}/changeAdmin`,data)
-
+export const senddisablePayment = (data) => axios.post(`${localhost}/senddisablePayment`,data)

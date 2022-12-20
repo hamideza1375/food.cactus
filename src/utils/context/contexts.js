@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Keyboard, BackHandler, ToastAndroid, Platform, Dimensions, Animated, Text } from "react-native";
 import { verifycodeRegister, sendcode, verifycode, loginUser, registerUser, forgetpassword, resetpassword, sendProposal, getProposal, getLastPayment, deleteMultiProposal } from "../../services/userService"
 import { geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification } from '../../services/foodService'
-import { getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable } from "../../services/adminService";
+import { getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable, senddisablePayment } from "../../services/adminService";
 import spacePrice from '../../utils/spacePrice';
 import { courseIdValidator } from '../../utils/IdValidator';
 import { truncate } from '../../utils/helpers';
@@ -164,7 +164,7 @@ function State() {
     changeTitle, setchangeTitle, proposalId, setproposalId,
     verifycodeRegister, sendcode, verifycode, loginUser, registerUser, forgetpassword, resetpassword, sendProposal, getProposal, getLastPayment, deleteMultiProposal,
     geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification,
-    getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable,
+    getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable,senddisablePayment,
     Keyboard, BackHandler, ToastAndroid, Platform, Dimensions,
     useMemo,
     moment, jwt_decode, localStorage, Alert, create, close, spacePrice, courseIdValidator, truncate,
