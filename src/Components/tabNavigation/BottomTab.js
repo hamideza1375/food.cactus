@@ -21,7 +21,7 @@ const Drawer = ({ group, children, name, style, bgcolor = '#fff', color = "#777"
 
   return (
     <View style={styles.container} >
-      <View style={{ flex:1 }} >
+      <View style={{ flex:1, maxHeight:'92%' }} >
         {children}
       </View>
 

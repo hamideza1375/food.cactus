@@ -44,7 +44,7 @@ const Drawer = ({ color='#222',group, children, name, title, bgcolor = '#fff', s
         <Icon onPress={open} name={'bars'} color={color} size={25} style={{padding:2}} />
       </View>
 
-      <View style={{flexGrow:1}} >
+      <View style={{flexGrow:1, maxHeight:'92%'}} >
         {children}
       </View>
 

@@ -51,7 +51,7 @@ const Profile = (p) => {
 
         </Span>
       </Span>
-          {p.tokenValue.isAdmin === 'chief' ? <Button style={Platform.OS === 'web'? {position:'fixsed', bottom:52}:{}} bgcolor='#555' w={'100%'} mt='auto' onClick={() => p.navigation.navigate("AdminTitleAllFood")} >پنل ادمین</Button> : <></>}
+          {p.tokenValue.isAdmin === 'chief' ? <Button bgcolor='#555' w={'100%'} mt='auto' onClick={() => p.navigation.navigate("AdminTitleAllFood")} >پنل ادمین</Button> : <></>}
     </Span>
   )
 }
