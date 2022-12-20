@@ -1,0 +1,780 @@
+//ChildFood
+.textPayment {
+  text-align: right;
+  padding-left: 5px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.titleSubTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.containSubPrice {
+  flex-direction: row;
+  // justify-self: right;
+}
+
+.smalPrice {
+  font-size: 13.5px;
+  font-weight: 300;
+  transform: translate(7px, 2px);
+}
+
+.ViewPayment {
+  text-align: right;
+  padding: 12px;
+  margin-left: auto;
+}
+
+
+.imagePayment {
+  width: 70px;
+  height: 75%;
+  margin-top: 6px;
+  border-radius: 15px;
+  background-color: #393;
+  transform: translate(20px, 3px);
+}
+
+.buttomPayment {
+  // position:absolute;
+  // bottom: 0;
+  width: 100%;
+  height: 14%;
+  min-height: 70px;
+  max-height: 85px;
+  background-color: silver;
+  flex-direction: row;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 10px rgba(235, 103, 27, 0.5);
+  align-self: center;
+}
+
+// .textPriceChild {
+//   padding: 8px;
+//   width: 100px;
+//   text-align: right;
+// }
+
+.viewContainer {
+  flex-grow: 1;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+// ! @media only screen and (min-width: 100px) {
+
+.containItem {
+  width: 44%;
+  margin: 13px;
+  height: 230px;
+  border-radius: 7px;
+}
+
+.containItemScroll {
+  width: 30%;
+  margin: 13px;
+  height: 215px;
+  border-radius: 7px;
+}
+
+
+
+
+.shadowSuccess {
+  elevation: 4;
+  box-shadow: 0px 0px 6px rgba(64, 138, 134, 0.8);
+}
+
+
+
+.shadowDark {
+  elevation: 2;
+  box-shadow: 0px 0px 6px rgba(104, 103, 102, .8);
+}
+
+
+.img {
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+}
+
+.radius{
+  border-radius: 3px;
+}
+
+.subImg {
+  height: 45%;
+  padding-top: 11;
+  background-color: #ddd;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.textTitleChild {
+  text-align: center;
+  padding: 5px 0 7px;
+  width: 100%;
+  background-color: #9999;
+  font-size: 16px;
+
+}
+
+.ViewSubItem {
+  flex-direction: row-reverse;
+  width: 99%;
+  justify-content: space-between;
+  position: relative;
+}
+
+.TextPlus {
+  min-width: 60px;
+  text-align: left;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  left: -4px;
+  height: 92%;
+}
+
+.vpls {
+  margin-left: 3px;
+  justify-content: space-around;
+}
+
+.viewIcons {
+  margin-top: 2px;
+  z-index: 33;
+  // border: 1px solid red;
+}
+
+
+
+.textPriceChild {
+  padding: 8px;
+  width: 100px;
+  text-align: right;
+}
+
+
+
+
+//ChildFood
+
+
+
+
+
+
+//FinalFoodPayment
+.viewHead {
+  flex-direction: row;
+  background-color: #fa0c;
+  overflow: hidden;
+}
+
+
+.btnFinal {
+  box-shadow: 4px 4px 5px rgb(142, 57, 1);
+}
+
+
+
+
+.viewOne {
+  width: 40%;
+  border: 1px solid #999;
+  height: 100%;
+}
+
+
+.viewConseal {
+  background-color: rgb(255, 145, 0);
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.scrollTable {
+  width: 95%;
+}
+
+
+.viewTable {
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  box-shadow: 1px 1px 5px #222;
+}
+
+.thead {
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  box-shadow: 1px 1px 4px #6669;
+}
+
+
+.tfood {
+  width: 100%;
+  flex-direction: row;
+  box-shadow: 1px 1px 5px #4449;
+
+}
+
+
+.viewPayment {
+  width: 61%;
+  // border-width: 1px;
+}
+
+.viewPayTwo {
+  width: 100%;
+  border-radius: 7px;
+  background-color: rgb(18, 142, 243);
+  height: 42;
+  justify-content: center;
+}
+
+.buttonPrice {
+  text-align: center;
+  color: #fff;
+}
+
+.containerCard{
+  height: 100%;
+  // padding-left: 14px;
+  padding-bottom: 40px;
+}
+
+
+.scrollContent {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 9px;
+}
+
+.viewKey {
+  align-items: center;
+  margin: 20px 0 0 9px;
+  width: 140px;
+  max-width: calc(100% - 2%);
+  height: 180px;
+  background-color: orange;
+  border-radius: 7px;
+  box-shadow: 1px 1px 5px #4449;
+  flex-grow: 1;
+}
+
+.imageFinalFood {
+  border-radius: 4px;
+  width: 99%;
+  height: 100px;
+}
+
+.textTitleFinal {
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+  background-color: #9999;
+  position: absolute;
+  bottom: 0;
+}
+
+
+.containButtomImage {
+  width: 100% - 1%;
+  flex-direction: row-reverse;
+  justify-content: center;
+  padding: 7px 5px 0;
+}
+
+
+.viewInputNum {
+  // top: -2px;
+  align-items: center;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.inputNum {
+  border-bottom-width: 1px;
+  text-align: center;
+}
+
+
+.viewPlusMinus {
+  // top: -2px;
+  // border-width: 1px;
+}
+
+
+.textPrice {
+  // width: 46px;
+  margin-left: auto;
+  text-align: left;
+  margin-top: 5px;
+  justify-content: space-around;
+}
+
+.priceCard{
+  text-align: left;
+  
+}
+
+//FinalFoodPayment
+
+
+
+
+
+//home
+.container {
+  flex: 1;
+  align-items: center;
+  background-color: #fff;
+}
+
+.containHead {
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+  min-height: 55;
+  max-height: 60;
+  background-color: #fff;
+  border: 1px solid rgb(222, 221, 221);
+  border-top-width: 0;
+  justify-content: space-around;
+  padding-bottom: 7px;
+}
+
+
+.searchHeader {
+padding-top: 2px;
+min-height: 50;
+}
+
+
+
+
+.viewSearch {
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 9px 9px 0 0;
+  border-radius: 7px;
+  width: 80%;
+  height: 43px;
+  background-color: red;
+  background-color: #f7f7f7;
+  align-self: center;
+  border: 1px solid rgb(226, 221, 221);
+  justify-content: center;
+}
+
+.search {
+  flex: 12;
+  padding: 10px;
+  font-weight: 100;
+  text-align: right;
+}
+
+.imageLogo {
+  width: 170px;
+  height: 170px;
+  margin: 20px 0;
+}
+
+.containerFood {
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.pressOpacity {
+  margin-bottom: 12px;
+  flex-grow: 1;
+  min-width: 30%;
+  max-width: 31%;
+  margin: 0 6px 18px;
+
+}
+
+.containImageShadow {
+  box-shadow: 0px 0px 4px #0005;
+}
+
+.imageFood {
+  height: 125px;
+}
+
+.textTitle {
+  font-size: 20px;
+  font-weight: 200;
+  padding: 4px;
+  width: 100%;
+  text-align: center;
+  margin-top: 3px;
+}
+
+//home
+
+
+
+
+
+//single Food
+.containform {
+  margin-top: 13px;
+  width: 90%;
+  height: 80%
+}
+
+
+.head {
+  min-width: 100%;
+  flex: 1;
+  min-height:85%
+}
+
+
+
+.scrollContain {
+  align-items: center;
+  flex: 1;
+  background-color: #fff;
+}
+
+.scrollView2 {
+  width: 95%;
+  border-radius: 6px;
+  // background-color: rgba(68, 5, 59);
+  box-shadow: 1px 1px 6px #000a;
+}
+
+.scrollContain2 {
+  flex-grow: 1;
+  box-shadow: 1px 1px 8px rgba(79, 2, 33, 0.333);
+
+}
+
+.title {
+  padding: 8px;
+  background-color: #8888;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  box-shadow: 1px 1px 4px #fff3;
+  color: #000;
+  font-size: 17;
+  font-weight: bold;
+}
+
+
+.containPrice {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px;
+  elevation:10;
+  box-shadow: 1px 1px 1px #0005;
+  z-index: 1000;
+  align-self: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.price {
+  padding: 8px;
+}
+
+
+.commentContain {
+  background-color: #4007;
+  flex: 2.6;
+  width: 100%;
+  align-items: center;
+  box-shadow: 1px 1px 6px rgba(67, 39, 67, 0.6);
+
+}
+
+
+
+.btnShow {
+  margin: 22px 0 10px;
+  width: 90%;
+  elevation:3;
+  box-shadow: 1px 1px 10px #0004;
+}
+
+.cardComment {
+  box-shadow: 1px 1px 5px #000a;
+}
+
+.imgCardComment {
+  border-radius: 30px;
+  height: 65px;
+}
+
+.info {
+  padding: 8px;
+  text-align: center;
+}
+
+.containComment {
+  border-radius: 3px;
+  margin: 15px 0;
+  width: 100%;
+  flex-direction: row;
+}
+
+.containMessage {
+  margin: 0 15px;
+  width: 95%;
+}
+
+.fullname {
+  width: 100%;
+  padding: 5px;
+  text-align: right;
+  margin: 0;
+  border-width: 1px;
+}
+
+.imputMessage {
+  width: 100%;
+  padding: 5px;
+  text-align: right;
+  margin: 0;
+  border-width: 1px;
+}
+
+.textImage {
+  border-radius: 3px;
+  width: 17%;
+  height: 53px;
+  margin: 0;
+  border-width: 1px;
+}
+
+.paginationContainer {
+min-height: 50px;
+margin-top: 10px;
+bottom: 100px;
+z-index: 111;
+align-items: center;
+align-self: center;}
+
+//single Food
+
+
+
+
+//sms
+.viewInput {
+  margin: 0px 37% 0;
+  width: 85%;
+  justify-content: center;
+  align-self: center;
+  align-items: center
+}
+
+.viewCnt {
+  border: 9px;
+  justify-content: space-between;
+  height: 210px;
+  padding: 15px 0;
+  // margin-top: StatusBar.currentHeight;
+}
+
+
+
+.p {
+  border: 9px;
+  justify-content: space-between;
+  height: 210px;
+  width:222
+  // margin-top: StatusBar.currentHeight;
+}
+
+.p2 {
+background-color: #393;
+}
+
+._div{
+  text-align: right;
+   width: 100%;
+   align-items: center;
+
+}
+
+
+.s_container {
+  background-color: #f82e;
+}
+
+.imgBackgroundContainer{
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  max-height: 250px;
+}
+
+.btnContainer{
+  width: 100%;
+  align-items: center;
+  margin:10px 0;
+  height: 40;
+}
+
+
+.containerComment{
+  padding: 0px 15px;
+  padding-bottom: 15px;
+  min-width: 70%;
+  align-self: center;
+}
+
+.cardHeaderRow{
+  justify-content: center;
+  flex-direction: row;
+  margin-right: auto;
+}
+
+
+.iconContainer{
+  width: 35px;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+
+
+
+// سایت برای خروجی گرفتن رایگان ios
+// کار با همه متد هارو یادداشت کن
+// تشریحی
+
+//!webrtc chat {
+// create like for chat
+// از voice to text تو webrtc
+// phone or email }
+
+// debug
+
+//dark mode
+// emlaie
+
+// class for web classname for ios
+
+
+
+.container {
+  flex: 1;
+  align-items: center;
+  background-color: #fff;
+}
+
+.svgContainer {
+  height:190px;
+    width: 100%;
+  // position:absolute;
+}
+
+.smallLogo {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  top: 48px;
+}
+
+.scroll {
+  width: 100%;
+  height: 100%;
+
+}
+
+.h_scrollContain {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: space-around;
+  flex-wrap: wrap;
+}
+
+.h_scrollContain {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: space-around;
+  flex-wrap: wrap;
+}
+
+.pressOpacity {
+  margin-bottom: 12px;
+  flex-grow: 1;
+  min-width: 30%;
+  max-width: 31%;
+  margin: 0px 6px 18px;
+  margin-vertical: 10px;
+}
+
+.containImageShadow {
+  box-shadow: 2px 2px 5px #0004;
+}
+
+.imageFood {
+  height: 125px;
+  border-radius: 6px;
+}
+
+.c0 {
+  width: 98%;
+}
+
+.c1 {
+  width: 48%;
+  margin: 1%;
+  height: 190px;
+  border-radius: 7px;
+}
+.c2 {
+  width: 31.4%;
+  margin: 1%;
+  height: 190px;
+  border-radius: 7px;
+}
+.c3 {
+  width: 23%;
+  margin: 1%;
+  height: 190px;
+  border-radius: 7px;
+}
+.c4 {
+  width: 19%;
+  margin: 1%;
+  height: 190px;
+  border-radius: 7px;
+}
+
+.infoShadow {
+  box-shadow: 0 0 15px rgba(64, 138, 134);
+}
+
+.silverShadow {
+  box-shadow: 0 0 15px rgba(90, 90, 90);
+}
+
+.containAscDesc {
+  width: 15%;
+  min-width: 65px;
+  max-width: 200px;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin: 0 4px;
+  margin-left: 8px;
+}

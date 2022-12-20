@@ -1,0 +1,64 @@
+// titleFood
+.containTable {
+    width: 90%;
+    align-self: center;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 0px 5px;
+    align-items: center;
+    height:100%;
+  }
+  
+  .thead {
+    background-color: silver;
+  }
+  
+  .viewBody {
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .viewHead {
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+  }
+  
+  .btn {
+    flex-basis: 90%;
+    padding-bottom: 1px;
+  }
+  
+  .tbody {
+    height: 40px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+  
+  
+  .containChildTable {
+    width: 91%;
+    align-self: center;
+  }
+  
+  .containerChildTable {
+    height: 80%;
+    width: 100%;
+    padding: 2px 5px 10px;
+  }
+  
+  .paginationContainer {
+    flex: .1;
+    min-height: 50px;
+    margin-top: 12px;
+    bottom: 1px;
+    z-index: 111;
+    align-items: center;
+    align-self: center;
+  }

@@ -1,0 +1,96 @@
+
+//profile 
+.headProfile {
+  flex-direction: row;
+  width: 100%;
+  background-color: #99f;
+  box-shadow: 1px 3px 8px #22f8;
+  border-bottom-width: 2px;
+  border-color: red;
+  height: 167 
+}
+
+.inputFile{
+  position: absolute;
+  z-index: 111;
+  border-radius: 22px;
+  min-height: 100px;
+  opacity: 0;
+  width: 100px;
+  max-width: 95%;
+  margin-top: 8px;
+  border: 2px solid red;
+}
+
+.iconPlusImage {
+  width: 30px;
+  height: 32px;
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  z-index: 999;
+  background-color: silver;
+  border-radius: 50px;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.profileImage {
+  border-radius: 15px;
+  height: 100px;
+  width: 100px;
+  // max-width: 95%;
+  margin-top: 8px;
+  margin-left: auto;
+  // margin-right: 5;
+}
+
+.textUserImage {
+  margin-top: 11px;
+  width: 100px;
+  max-width: 95%;
+  text-align: center;
+  // color: rgb(100, 7, 60)
+}
+
+.viewUserImage {
+  margin-top: 3px;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  // border-radius: 4px;
+}
+
+.containImage {
+  width: 90%;
+  height: 100%;
+}
+
+.containHeaderInfo {
+  transform: scale(.85);
+  flex-direction: row;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin-right: -10px;
+}
+
+.bodyProfile {
+  flex-grow: 1;
+  align-items: flex-start;
+  padding-top: 14px;
+  background-color: #44a3;
+  box-shadow: 1px 1px 5px #22f8;
+}
+
+.btnPanel {
+  height: 50px;
+  width: 100%;
+  margin-top: auto;
+  background-color: #555;
+  box-shadow: 2px -2.5px 9px #555e;
+  border-width: 0;
+  border-top-width: .1px;
+  border-color: #f55;
+}
+
+  //profile 
