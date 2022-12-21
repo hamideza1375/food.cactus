@@ -307,8 +307,10 @@ export function userState(p) {
   this.getLastPayment = () => {
     p.useEffect(() => {
       (async () => {
-        let { data } = await p.getLastPayment()
-        p.setlastPayment(data)
+        if(p.tokenValue?.fullname){
+          let { data } = await p.getLastPayment()
+          p.setlastPayment(data)
+        }
 
         // send sefaresh = 1
         // pake lasst send change to = 0

@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
-import { Platform } from 'react-native';
+import { Platform, PermissionsAndroid } from 'react-native';
 import backgroundTimer from '../utils/backgroundTimer'
+import { getLocation } from '../screens/user/getLocation/getLocation';
+import Geolocation from 'react-native-geolocation-service';
+
 
 const beforeUnloadListener = (event) => {
   event.preventDefault();
@@ -639,6 +642,56 @@ export const home = (p) => {
         })
       }, 500)
     })()
+  }, [])
+
+
+
+  if(navigator?.geolocation?.getCurrentPosition) 
+  navigator.geolocation.getCurrentPosition(
+   function(position) {
+     p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})
+   },
+ )
+
+
+
+  p.useEffect(() => {
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: '',
+          message: '',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK'
+        }
+      ).then(() => {
+        Geolocation.getCurrentPosition(
+          ({ coords }) => {
+            p.setregion({ lat: coords.latitude, lng: coords.longitude, })
+            p.setlocationPermission(true)
+          },
+          (error) => {
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+       })
+    }
+    else if (Platform.OS === 'ios') {
+      Geolocation.getCurrentPosition(
+        ({ coords }) => {
+          p.setregion({ lat: coords.latitude, lng: coords.longitude, })
+          p.setlocationPermission(true)
+        },
+        (error) => {
+          console.log(error.code, error.message);
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      )
+    }
+
   }, [])
 
 

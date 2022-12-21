@@ -1,11 +1,39 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react'
-import { View } from 'react-native';
+import { PermissionsAndroid, View } from 'react-native';
 import Frame from '../../Components/other/Frame';
 import { localhost } from '../../utils/axios/axios'
+import Geolocation from 'react-native-geolocation-service';
 
 
 const Location = (p) => {
+
+  p.useEffect(() => {
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: '',
+          message: '',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK'
+        }
+      ).then(() => {
+        Geolocation.getCurrentPosition(
+          ({ coords }) => {
+            p.setregion({ lat: coords.latitude, lng: coords.longitude, })
+            p.setlocationPermission(true)
+          },
+          (error) => {
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+       })
+    }
+  }, [])
+
 
   const [token, settoken] = useState({})
   p.useEffect(() => {
@@ -213,9 +241,10 @@ const Location = (p) => {
             foods: ${JSON.stringify(p.totalTitle)},
             plaque: document.getElementById('plaque').value,
             floor: document.getElementById('floor').value,
-            formattedAddress: document.getElementById('address').value,
+            formattedAddress: document.getElementByid('address').value,
             streetName: JSON.stringify(revers.streetName),
-            origin: JSON.stringify(revers)
+            origin: JSON.stringify(revers),
+            enablePayment:1
           })
 
           if(status === 200) window.location.assign(data)

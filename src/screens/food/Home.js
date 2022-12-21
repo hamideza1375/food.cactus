@@ -65,7 +65,7 @@ const Home = (p) => {
         />)
       }
 
-{p.lastPayment.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{marginTop:'auto'}}>
+{p.lastPayment?.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{marginTop:'auto'}}>
         <P>سفارش شما در حال آماده سازی و ارسال هست</P>
     </Span>}
     </Span>

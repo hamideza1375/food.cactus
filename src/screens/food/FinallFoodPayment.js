@@ -1,28 +1,9 @@
 import React from 'react'
-import { PermissionsAndroid, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Loading, Button, Container, ImgBackground, P, Scroll, Span, Table } from '../../Components/Html';
-import { getLocation } from '../user/getLocation/getLocation';
 import s from "./Food.module.scss"
 
 const FinallFoodPayment = (p) => {
-
-
-  p.useEffect(() => {
-    if (Platform.OS === 'android') {
-      PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: '',
-          message: '',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK'
-        }
-      ).then(() => { })
-    }
-  }, [])
-
 
   const inputPrice = `${p.allprice ? p.allprice : '0'}`
   const allfood = p.allfood.filter((a) => a.num > 0)
@@ -31,13 +12,12 @@ const FinallFoodPayment = (p) => {
   const minus = (index, item) => p._food.minusNum(index, item)
   const deleteAsyncStorage = () => p._food.deleteStorage()
 
-  getLocation(p)
 
   return (
         <Container class={s.viewHead} >
           <Span class={s.viewOne}>
             <Span class={s.viewConseal} >
-              <Button disabled={allfood.length ? false : true} bgcolor="orange" class={s.btnFinal} onPress={deleteAsyncStorage} >لغو سفارش</Button>
+              <Button disabled={allfood.length ? false : true} bgcolor="orange" class={s.btnFinal} onPress={deleteAsyncStorage} >پاک کردن همه</Button>
             </Span>
             <Span style={{ width: '96%', alignSelf: 'center', height:'100%' }} >
               {!allfood.length ?

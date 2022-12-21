@@ -155,10 +155,14 @@ function State() {
   const [locationPermission, setlocationPermission] = useState(false)
   const [rand, setRand] = useState(parseInt(Math.random() * 9000 + 1000));
   const [showActivity, setshowActivity] = useState(false);
+  const [latlng, setlatlng] = useState({lat: 36.225014234928924, lng: 57.69500965736432});
+  const [showActivityHome, setshowActivityHome] = useState(true)
   const refInput = useRef()
   const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
 
   return {
+    showActivityHome, setshowActivityHome,
+    latlng, setlatlng,
     rand, setRand, refInput,
     useEffect,
     changeTitle, setchangeTitle, proposalId, setproposalId,

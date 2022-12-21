@@ -4,6 +4,7 @@ import axios from 'axios'
 import { styles } from '../../other/leaflet/styles';
 
 let revers = {}
+var map
 const Location = (p) => {
 
 	useEffect(() => {
@@ -12,10 +13,10 @@ const Location = (p) => {
 		let dataSave;
 		const origin = p.route.params?.origin
 
-		let mark = origin ? { lat: origin.latitude, lng: origin.longitude } : { lat: 36.214174234928924, lng: 57.68491965736432 }
+		let mark = origin ? { lat: origin.latitude, lng: origin.longitude } : p.latlng
 		let mark2 = { lat: 1.214174234928924, lng: 1.68491965736432 }
 
-		var map = L.map('map', { center: mark, zoom: 17, })
+		 map = L.map('map', { center: mark, zoom: 17, })
 
 		var myIcon = L.icon({ iconUrl: `${localhost}/images/mark.png`, iconSize: [38, 95], iconAnchor: [22, 94], popupAnchor: [-3, -76], shadowSize: [68, 95], shadowAnchor: [22, 94], });
 		let markerOption = { draggable: origin ? false : true, icon: myIcon }
@@ -33,9 +34,18 @@ const Location = (p) => {
 		var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 		map.addLayer(layer);
 
+
+
+		// window.onload
 		(async () => {
+			if (p.latlng.lat !== 36.225014234928924 || p.latlng.lng !== 57.69500965736432){
+		circle1.setLatLng(p.latlng)
+		circle2.setLatLng(p.latlng)
+}
+
 			const response = await axios.post(`${localhost}/reverse`, JSON.stringify(mark), { headers: { 'Content-Type': 'application/json' } })
 			if (response.status) {
+	    	dataSave = p.latlng.lat !== 36.225014234928924 || p.latlng.lng !== 57.69500965736432 ?await response.data:[]
 				const data = await response.data
 				if (data[0]) {
 					const one = (data[0].streetName && data[0].streetName !== data[0].formattedAddress.split(",")[0]) ? data[0].streetName : ''
@@ -113,11 +123,13 @@ const Location = (p) => {
 		}
 
 		document.getElementById('searching').onclick = () => searching()
-
 		document.getElementById('formSearch').onsubmit = (event) => searching(event)
 
+
+
 		document.getElementById('btnPayment').onclick = async () => {
-			if (!document.getElementById('plaque').value || !document.getElementById('floor').value) alert('کادر پلاک و طبقه را پر کنید')
+			if (!document.getElementById('address').value) return alert('کادر آدرس را پر کنید')
+			if (!document.getElementById('plaque').value || !document.getElementById('floor').value) return alert('کادر پلاک و طبقه را پر کنید')
 			let { data, status } = await axios.post(`${localhost}/confirmpayment?allprice=${p.route.params.allprice}`, {
 				foods: p.totalTitle,
 				plaque: document.getElementById('plaque').value,
@@ -145,42 +157,9 @@ const Location = (p) => {
 
 
 
-	async function onLocationFound(e) {
-		
-
-		circle1.setLatLng(e.latlng)
-		circle2.setLatLng(e.latlng)
 
 
 
-   if(!origin){
-	   marker.setLatLng(e.latlng)
-	   map.setZoom(17)
-			const response = await axios.post(`${localhost}/reverse`, JSON.stringify({ lat: e.latlng.lat, lng: e.latlng.lng }), { headers: { 'Content-Type': 'application/json' } })
-			if (response.status) {
-				dataSave = await response.data
-				const data = await response.data
-				if (data[0]) {
-					const one = (data[0].streetName && data[0].streetName !== data[0].formattedAddress.split(",")[0]) ? data[0].streetName : ''
-					const two = data[0].formattedAddress.split(",")[0] ? data[0].formattedAddress.split(",")[0] : ''
-					const three = data[0].formattedAddress.split(",")[1] ? data[0].formattedAddress.split(",")[1] : ''
-					const street = one + ' ' + two + ' ' + three
-					revers = data[0]
-					marker.bindPopup(street).openPopup()
-					document.getElementById('address').value = street
-					setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
-					map.setView(e.latlng)
-		      document.getElementById('bottomDiv').style.visibility = 'visible'
-
-				}
-			}
-}			
-
-        }
-
-
-        map.on('locationfound', onLocationFound);
-		map.locate({ watch: false, setView: false })
 
 
 
@@ -242,6 +221,8 @@ const Location = (p) => {
 		mapStyle.appendChild(document.createTextNode(styles));
 		document.head.appendChild(mapStyle);
 
+
+		return()=>{map.stopLocate()}
 
 	}, [])
 
