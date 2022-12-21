@@ -18,7 +18,7 @@ const Home = (p) => {
     <Span class={s.container}>
       <Svg width={p.width} />
       {Platform.OS === 'web' ?
-       <Scroll class={s.scroll} containClass={s.h_scrollContain} style={{maxWidth:1100}} >
+       <Scroll class={s.scroll} containClass={s.h_scrollContain} style={{maxWidth:1400}} >
                 
         {!p.foods.length ?
           <Loading h={400} />
@@ -47,6 +47,7 @@ const Home = (p) => {
           columnWrapperStyle={{ alignSelf: 'center' }}
           numColumns={3}
           keyExtractor={(f) => f && f._id.toString()}
+          style={{width:'98%'}}
           data={p.foods}
           renderItem={({ item, index }) => (
             p.tokenValue.isAdmin !== 'courier' ?
@@ -65,9 +66,7 @@ const Home = (p) => {
         />)
       }
 
-{p.lastPayment?.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{marginTop:'auto'}}>
-        <P>سفارش شما در حال آماده سازی و ارسال هست</P>
-    </Span>}
+
     </Span>
   )
 }

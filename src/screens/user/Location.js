@@ -61,7 +61,7 @@ const Location = (p) => {
 
 <div style="display:flex; flex-direction:row-reverse; padding-top:15px; width:100%" >
    <p style="text-align:right;" > :آدرس</p>
-   <input type="text" id="address" style="text-align:right;margin-right:3px;width:80%" />
+   <input dir="rtl" type="text" id="address" style="text-align:right;margin-right:3px;width:80%" />
 </div>
 
 
@@ -215,7 +215,7 @@ const Location = (p) => {
             floor: document.getElementById('floor').value,
             formattedAddress: document.getElementById('address').value,
             streetName: JSON.stringify(revers.streetName),
-            allFoodTitle:JSON.stringify(${p.allFoodTitle}),
+            allFoodTitle: ${JSON.stringify(JSON.stringify(p.allFoodTitle))},
             origin: JSON.stringify(revers)
           })
 

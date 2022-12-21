@@ -7,6 +7,7 @@ const Profile = (p) => {
   p._food.getImageProfile()
   p._user._tokenValue()
   p._user.profile()
+  p._user.getLastPayment()
   const imgPicker = () => p._user.imagePicker()
 
   return (

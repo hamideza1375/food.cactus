@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Dimensions } from 'react-native';
 import spacePrice from '../../utils/spacePrice';
-import { Row, Span, P, Button, H1, H5, H6 } from '../Html';
+import { Row, Span, P, Button, H1, H5, H6, FlatList } from '../Html';
 
 
 
@@ -24,6 +24,9 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
   }
   let bgColor = (key) => ([{ backgroundColor: odd.includes(key) ? color[0] : color[1], borderColor: border[1] ? border[1] : color[1] }]);
   let textStyle = { color: color[2], textShadowColor: color[2] };
+
+  const height = Dimensions.get('window').height
+
 
   if (!object)
     return (
@@ -57,27 +60,66 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
         <Row fd='row-reverse' w='100%' alignSelf='center'>
           {header.map((f, i) => (<Th style={[bgColor(1)]} textStyle={[textStyle, { fontSize }]} key={i}>{f}</Th>))}
         </Row>
-        <ScrollView contentContainerStyle={{ flexGrow: 1, width: '100%' }} style={{ width: '100%' }}>
-          {object.map((f, i) => (
-            <View style={{ flexDirection: 'row-reverse', flexGrow: 1 }} key={i}>
-              {body.map((b, n) => (
-                btn1onClick && n === 0 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn1onClick(); }} style={[bgColor(i), btn1Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn1}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                  btn2onClick && n === 1 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn2onClick(); }} style={[bgColor(i), btn2Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn2}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                    btn3onClick && n === 2 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn3onClick(); }} style={[bgColor(i), btn3Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn3}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                      btn4onClick && n === 3 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn4onClick(); }} style={[bgColor(i), btn4Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn4}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                        btn5onClick && n === 4 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn5onClick(); }} style={[bgColor(i), btn5Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn5}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                          btn6onClick && n === 5 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn6onClick(); }} style={[bgColor(i), btn6Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn6}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                            btn7onClick && n === 6 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn7onClick(); }} style={[bgColor(i), btn7Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn7}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
-                              <Tb key={n} style={[bgColor(i)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tb>
-              ))}
-                  {children}
-            </View>
-          ))}
 
-        </ScrollView>
+
+
+        <FlatList 
+                keyExtractor={(f) => f && f._id}
+                data={object}
+                contentContainerStyle={{ flexGrow: 1, width: '100%', paddingBottom:75}}
+                style={{ width: '100%', height:height - 70, maxHeight:'98%' }}
+                renderItem={({ item, index }) => (
+
+             <View style={{   flexDirection: 'row-reverse', width:'100%' }}>
+              {body.map((b, n) => (
+                btn1onClick && n === 0 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn1onClick(); }} style={[bgColor(index), btn1Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn1}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn2onClick && n === 1 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn2onClick(); }} style={[bgColor(index), btn2Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn2}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn3onClick && n === 2 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn3onClick(); }} style={[bgColor(index), btn3Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn3}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn4onClick && n === 3 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn4onClick(); }} style={[bgColor(index), btn4Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn4}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn5onClick && n === 4 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn5onClick(); }} style={[bgColor(index), btn5Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn5}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn6onClick && n === 5 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn6onClick(); }} style={[bgColor(index), btn6Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn6}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                btn7onClick && n === 6 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn7onClick(); }} style={[bgColor(index), btn7Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn7}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
+                <Tb key={n} style={[bgColor(index)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tb>
+                ))}
+                {children}
+                </View>
+        )}
+        />
+          
+
       </View>
     );
 }
+
+
+
+
+
+{/* <View style={{ width: w, maxHeight: '100%', marginTop: mt, alignItems: 'flex-start'}}>
+<Row fd='row-reverse' w='100%' alignSelf='center'>
+  {header.map((f, i) => (<Th style={[bgColor(1)]} textStyle={[textStyle, { fontSize }]} key={i}>{f}</Th>))}
+</Row>
+<ScrollView contentContainerStyle={{ flexGrow: 1, width: '100%' }} style={{ width: '100%' }}>
+  {object.map((f, i) => (
+    <View style={{ flexDirection: 'row-reverse', flexGrow: 1 }} key={i}>
+      {body.map((b, n) => (
+        btn1onClick && n === 0 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn1onClick(); }} style={[bgColor(i), btn1Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn1}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+          btn2onClick && n === 1 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn2onClick(); }} style={[bgColor(i), btn2Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn2}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+            btn3onClick && n === 2 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn3onClick(); }} style={[bgColor(i), btn3Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn3}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+              btn4onClick && n === 3 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn4onClick(); }} style={[bgColor(i), btn4Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn4}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+                btn5onClick && n === 4 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn5onClick(); }} style={[bgColor(i), btn5Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn5}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+                  btn6onClick && n === 5 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn6onClick(); }} style={[bgColor(i), btn6Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn6}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+                    btn7onClick && n === 6 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([f, i]); }} onPress={() => { btn7onClick(); }} style={[bgColor(i), btn7Opacity && { opacity: f.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn7}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tbtn> :
+                      <Tb key={n} style={[bgColor(i)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(f.price) || b === 'title' && f.title || b === 'total' && spacePrice(f.total) || b}</Tb>
+      ))}
+          {children}
+    </View>
+  ))}
+
+</ScrollView>
+</View> */}
+
+
 
 
 export default Table

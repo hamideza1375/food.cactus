@@ -19,7 +19,8 @@ const ChildFood = (p) => {
 
   const open2 = () => Animated.timing(p.anim2, { toValue: 90, duration: 150, useNativeDriver: false }).start();
   const close2 = () => Animated.timing(p.anim2, { toValue: 10, duration: 150, useNativeDriver: false }).start();
-
+  
+  p._user.getLastPayment()
 
   if (!p.courseIdValidator(p.route.params.id)) return p.navigation.navigate('NotFound')
   useEffect(() => { if (inputPrice == 0) { close(); close2() } }, [inputPrice])

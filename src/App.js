@@ -28,7 +28,7 @@ import AddAdmin from "./screens/admin/AddAdmin";
 import DeleteAdmin from "./screens/admin/DeleteAdmin";
 import Notifee from './screens/admin/Notifee';
 import ChangeAdmin from "./screens/admin/ChangeAdmin";
-import { Div, Input, Loading, Row } from "./Components/Html";
+import { Div, Input, Loading, P, Row, Span } from "./Components/Html";
 import { Init } from "./Components/Html";
 import { Layout, header } from "./other/Layout";
 import _404 from "./other/404"
@@ -61,7 +61,9 @@ const Food = () => {
   if (allState.width <= 650) imageStyle = { width: allState.width, height: allState.width }
   if (allState.width > 650) imageStyle = { width: 600, height: 600 }
   // const children = (props) => <Layout {...props}  {...p} ><Home {...props} {...p}  {...reducer(props)} /></Layout>; // const _children={children}
-  const _children=(Component,key)=>({children:(props) => <Layout _key={key} {...props} {...p} >{p.showActivity && <Loading pos='absolute' top={15} time={900000} />}<Component {...props} {...p} {...reducer(props)} /></Layout>})
+  const _children=(Component,key)=>({children:(props) => <Layout _key={key} {...props} {...p} >{p.showActivity && <Loading pos='absolute' top={15} time={900000} />}
+   {p.lastPayment?.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{position:'absolute',bottom:2, zIndex:9999999999, alignSelf:'center'}}><P>سفارش شما در حال آماده سازی و ارسال هست</P></Span>} 
+   <Component {...props} {...p} {...reducer(props)} /></Layout>})
   return (
     allState.splash ?
       <Div style={{ width: '100%', height: Platform.OS === 'web' ? '100vh' : '100%', justifyContent: 'center', alignItems: 'center', backgroundColor:'#fff' }} >

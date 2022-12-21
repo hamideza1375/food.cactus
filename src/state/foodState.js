@@ -670,15 +670,7 @@ export const home = (p) => {
   }
 }, [p.lastPayment])
 
-// p.useEffect(() => {
-//   (async () => {
-//     if(p.tokenValue?.fullname){
-//       let { data } = await p.getLastPayment()
-//       if (Platform.OS === 'web' && data === 1) {
-//         removeEventListener("beforeunload", beforeUnloadListener, { capture: true });
-//       }        }
-//   })()
-// }, [p.lastPayment])
+
 
 
 

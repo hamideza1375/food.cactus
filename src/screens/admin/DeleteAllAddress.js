@@ -52,7 +52,7 @@ const DeleteAllAddress = (p) => {
 								</View>
 
 								<View style={{ borderBottomWidth: .2,borderColor:'#888', padding: 15, width: '100%' }} >
-									<Text  ><Text style={{ fontWeight: 'bold', textAlign: 'left' }} >نام غذا: </Text>{item.foodTitle}</Text>
+									<Text  ><Text style={{ fontWeight: 'bold', textAlign: 'left' }} >اسامی سفارش: </Text>{item.foodTitle}</Text>
 								</View>
 
 								<View style={{ paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }} >
