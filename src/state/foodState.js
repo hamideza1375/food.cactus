@@ -189,6 +189,19 @@ export function foodState(p) {
       h[index].total = item.price * h[index].num
       let allfood = [...p.allfood]
       let fnd = allfood.findIndex((f) => f._id === item._id)
+      let allfoodTitle=[]
+      allfood.map((food)=>{if(food.num !== 0)allfoodTitle.push(food.title)})
+
+
+      let find2 = p.allFoodTitle.find((f) => f === item.title)
+      
+      if(!find2)
+      p.setallFoodTitle((food)=>food.concat(item.title))
+      
+      console.log(p.allFoodTitle);
+
+
+
       if (!allfood[fnd]) {
         allfood.push(h[index])
         p.setallfood(allfood)
@@ -255,6 +268,8 @@ export function foodState(p) {
         let gg = p.totalTitle.filter((t) => t != item._id)
         p.settotalTitle(gg)
         p.map.delete(item._id + '1')
+        let titleFood = p.allFoodTitle.filter((title)=>title !== item.title )
+        p.setallFoodTitle(titleFood)
       }
       p.foodMap.set(p.route.params.id, h)
 
@@ -284,6 +299,8 @@ export function foodState(p) {
         let gg = p.totalTitle.filter((t) => t != item._id)
         p.settotalTitle(gg)
         p.map.delete(item._id + '1')
+        let titleFood = p.allFoodTitle.filter((title)=>title !== item.title )
+        p.setallFoodTitle(titleFood)
       }
     }
   }
@@ -311,6 +328,7 @@ export function foodState(p) {
             p.map.delete('allprice')
             p.setallprice(0)
             p.setallfood([])
+            p.setallFoodTitle([])
             p.settotalTitle([])
             p.setshow1(!p.show1)
             if (Platform.OS === 'web') removeEventListener("beforeunload", beforeUnloadListener, { capture: true });
@@ -643,6 +661,24 @@ export const home = (p) => {
       }, 500)
     })()
   }, [])
+
+
+
+  p.useEffect(() => {
+  if (Platform.OS === 'web' && p.lastPayment?.enablePayment === 1) {
+    removeEventListener("beforeunload", beforeUnloadListener, { capture: true });
+  }
+}, [p.lastPayment])
+
+// p.useEffect(() => {
+//   (async () => {
+//     if(p.tokenValue?.fullname){
+//       let { data } = await p.getLastPayment()
+//       if (Platform.OS === 'web' && data === 1) {
+//         removeEventListener("beforeunload", beforeUnloadListener, { capture: true });
+//       }        }
+//   })()
+// }, [p.lastPayment])
 
 
 

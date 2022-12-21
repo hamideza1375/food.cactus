@@ -215,6 +215,7 @@ const Location = (p) => {
             floor: document.getElementById('floor').value,
             formattedAddress: document.getElementById('address').value,
             streetName: JSON.stringify(revers.streetName),
+            allFoodTitle:JSON.stringify(${p.allFoodTitle}),
             origin: JSON.stringify(revers)
           })
 

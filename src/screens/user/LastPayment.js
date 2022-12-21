@@ -27,6 +27,14 @@ const GetProposal = (p) => {
               <P  ><P style={{ fontWeight: 'bold' }} >پلاک: </P>{p.lastPayment.floor}</P>
               <P  ><P style={{ fontWeight: 'bold' }} >طبقه: </P>{p.lastPayment.plaque}</P>
             </Span>
+
+
+
+            <Span style={{ borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, }} >
+              <P> <P style={{ fontWeight: 'bold' }} >نام غدا: </P> <P>{p.lastPayment.foodTitle}</P></P>
+            </Span>
+
+            
             <Span style={{ paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, }} >
               <P  ><P style={{ fontWeight: 'bold' }} >قیمت: </P>{p.spacePrice(p.lastPayment.price)} تومان</P>
               <P style={{ color: '#ababab', }}>{p.moment(p.lastPayment.createdAt).format('jYYYY/jM/jD hh:mm:ss')}</P>

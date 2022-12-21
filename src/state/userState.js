@@ -263,6 +263,7 @@ export function userState(p) {
               p.map.delete('allprice')
               p.setallprice(0)
               p.setallfood([])
+              p.setallFoodTitle([])
               p.settotalTitle([])
               p.setshow1(!p.show1)
               // p.setfoodMap(new Map())
@@ -311,9 +312,6 @@ export function userState(p) {
           let { data } = await p.getLastPayment()
           p.setlastPayment(data)
         }
-
-        // send sefaresh = 1
-        // pake lasst send change to = 0
       })()
     }, [])
   }

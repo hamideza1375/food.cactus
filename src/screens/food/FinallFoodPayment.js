@@ -4,6 +4,7 @@ import { Loading, Button, Container, ImgBackground, P, Scroll, Span, Table } fro
 import s from "./Food.module.scss"
 
 const FinallFoodPayment = (p) => {
+  p._user.getLastPayment()
 
   const inputPrice = `${p.allprice ? p.allprice : '0'}`
   const allfood = p.allfood.filter((a) => a.num > 0)
@@ -44,7 +45,7 @@ const FinallFoodPayment = (p) => {
             <Span class={s.viewPayTwo}>
               <Button disabled={allfood.length ? false : true} bgcolor="orange"
                 class={s.btnFinal}
-                onPress={() => { p.navigation.navigate("Location",{allprice:p.allprice}) }}
+                onPress={() => { p.navigation.navigate("Location",{allprice:p.allprice,allFoodTitle:p.allFoodTitle}) }}
               >
                 پرداخت
               </Button>
