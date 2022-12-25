@@ -116,7 +116,7 @@ export function adminState(p) {
         { text: "OK", onPress: async () => { 
           p.setshowActivity(true)
           await p.deleteAddress(_id); p.setchange(!p.change);
-          await p.senddisablePayment({userId:p.tokenValue.userId});
+          await p.senddisablePayment({_id});
          } }
           
       ])

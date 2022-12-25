@@ -61,7 +61,7 @@ const Food = () => {
   if (allState.width <= 650) imageStyle = { width: allState.width, height: allState.width }
   if (allState.width > 650) imageStyle = { width: 600, height: 600 }
   // const children = (props) => <Layout {...props}  {...p} ><Home {...props} {...p}  {...reducer(props)} /></Layout>; // const _children={children}
-  const _children=(Component,key)=>({children:(props) => <Layout _key={key} {...props} {...p} >{p.showActivity && <Loading pos='absolute' top={15} time={900000} />}
+  const _children=(Component,key)=>({children:(props) => <Layout _key={key} {...props} {...p} >{p.showActivity && <Loading setshowActivity={p.setshowActivity} pos='absolute' top={15} time={900000} />}
    {p.lastPayment?.enablePayment === 1 && <Span bgcolor='#0fba' ph={9} br={5} style={{position:'absolute',bottom:2, zIndex:9999999999, alignSelf:'center'}}><P>سفارش شما در حال آماده سازی و ارسال هست</P></Span>} 
    <Component {...props} {...p} {...reducer(props)} /></Layout>})
   return (
