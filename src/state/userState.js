@@ -3,6 +3,9 @@ import Geolocation from 'react-native-geolocation-service';
 import { Platform } from "react-native"
 import { imagePicker } from "../utils/imagePicer";
 
+var second = 1000;
+var minute = second * 60;
+var hour = minute * 60;
 
 export function userState(p) {
 
@@ -38,7 +41,22 @@ export function userState(p) {
   this.registerSendAction = async () => {
     p.setshowActivity(true)
     await p.registerUser({ phone: p.phone });
-    p.setchangeRegister(!p.changeRegister)
+    p.setchangeRegister(true)
+    p.setcomponentSendCode(false)
+    setTimeout(() => { p.setcomponentSendCode(true) }, 1000 * 60 * 2);
+
+    let countDown = new Date()
+      if (p.$) p.$.id('top-tab').$({ display: 'none' })
+    let interval =  setInterval(() => {
+        let nowDate = new Date().getTime(),
+          distance = countDown - nowDate;
+        p.setmin(() => {
+          let second2 = Math.floor((distance % (minute)) / second);
+              let mins = Math.floor((distance % (hour)) / (minute));
+          return second2 + ':' + Number(mins + 1)
+        })
+      }, 1000);
+    setTimeout(() => { clearInterval(interval) }, 1000 * 59 * 2);
   }
 
 
@@ -46,7 +64,7 @@ export function userState(p) {
     p.setshowActivity(true)
     await p.verifycodeRegister({ code: p.code, fullname: p.fullname, email: p.email, phone: p.phone, password: p.password })
     p.navigation.navigate("Login")
-    p.setchangeRegister(!p.changeRegister)
+    p.setchangeRegister(false)
   }
 
 

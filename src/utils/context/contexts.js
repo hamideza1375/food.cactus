@@ -158,11 +158,15 @@ function State() {
   const [latlng, setlatlng] = useState({lat: 36.225014234928924, lng: 57.69500965736432});
   const [showActivityHome, setshowActivityHome] = useState(true)
   const [allFoodTitle, setallFoodTitle] = useState([])
-  
+  const [componentSendCode, setcomponentSendCode] = useState(false)
+  const [min, setmin] = useState(0)
+
   const refInput = useRef()
   const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
 
   return {
+    min, setmin,
+    componentSendCode, setcomponentSendCode,
     allFoodTitle, setallFoodTitle,
     showActivityHome, setshowActivityHome,
     latlng, setlatlng,

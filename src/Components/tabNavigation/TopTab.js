@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import { Div } from '../Html';
 
 const Drawer = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
   const navigation = useNavigation()
 
   return (
     <View style={styles.container} >
-      <View style={[styles.sidebar, { backgroundColor: bgcolor }, style]} >
+      <Div id="top-tab" style={[styles.sidebar, { backgroundColor: bgcolor }, style]} >
         {group.map((item, key) => (
           <View key={key} style={styles.routeView} >
             <Pressable
@@ -18,7 +19,7 @@ const Drawer = ({ group, children, name, style, bgcolor = '#fff', color = "#777"
             </Pressable>
           </View>
         ))}
-      </View>
+      </Div>
       <View style={{ height: '92%' }} >
         {children}
       </View>
