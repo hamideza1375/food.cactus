@@ -138,6 +138,7 @@ const Location = (p) => {
 				streetName: JSON.stringify(revers.streetName),
 				origin: JSON.stringify(revers),
 				allFoodTitle:JSON.stringify(p.route.params.allFoodTitle),
+				description:p.route.params.description,
 				enablePayment:1
 			})
 			// if (status === 200) window.open(data)
