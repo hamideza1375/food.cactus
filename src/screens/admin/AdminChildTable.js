@@ -16,6 +16,8 @@ const AdminChildTable = (p) => {
           {!p.current ?
             <Loading />
             :
+            <Span style={{maxHeight:'90%'}} >
+
             <Table
               color={['#555', '#656565', 'white']}
               border={[1, '#353535']}
@@ -31,6 +33,7 @@ const AdminChildTable = (p) => {
               object={p.current}
               setobject={p.set$food}
             />
+        </Span>
           }
         </Span>
         <_Modal availabe={(param) => { sendSetavailable(param, p.route.params.id, p.id2); p.setshow(false) }} showModal={p.show} setshowModal={p.setshow} message={'موجود نیست؟' + " (" + p.current[p.$food[1]]?.title + ')'} _admin={p._admin} />

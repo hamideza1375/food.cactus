@@ -17,6 +17,8 @@ const AdminTitleAllFood = function (p) {
             !p.foods.length ?
               <Loading style={{ top: 30 }} animating={p.foods.length ? false : true} />
               :
+        <Span style={{maxHeight:'90%'}} >
+
               <Table
                 color={['#555', '#656565', 'white']}
                 border={[1, '#353535']}
@@ -33,6 +35,8 @@ const AdminTitleAllFood = function (p) {
                 setobject={p.set$food}
                 mt={10}
               />
+        </Span>
+
           }
 
         <Modal showModal={p.showModal} setshowModal={p.setshowModal} id={p.id} message={'حذف شود؟ ' + " (" + p.foods[p.$food[1]]?.title + ')'} _admin={p._admin} />

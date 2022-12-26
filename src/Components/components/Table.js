@@ -56,7 +56,7 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
 
   else
     return (
-      <View style={{ width: w, maxHeight: '100%', marginTop: mt, alignItems: 'flex-start'}}>
+      <View style={{ width: w, marginTop: mt, alignItems: 'flex-start'}}>
         <Row fd='row-reverse' w='100%' alignSelf='center'>
           {header.map((f, i) => (<Th style={[bgColor(1)]} textStyle={[textStyle, { fontSize }]} key={i}>{f}</Th>))}
         </Row>
@@ -66,8 +66,8 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
         <FlatList 
                 keyExtractor={(f) => f && f._id}
                 data={object}
-                contentContainerStyle={{ flexGrow: 1, width: '100%', paddingBottom:75}}
-                style={{ width: '100%', height:height - 70, maxHeight:'98%' }}
+                contentContainerStyle={{ flexGrow: 1, width: '100%', paddingBottom:1}}
+                style={{ width: '100%'}}
                 renderItem={({ item, index }) => (
 
              <View style={{   flexDirection: 'row-reverse', width:'100%' }}>

@@ -54,8 +54,8 @@ const FinallFoodPayment = (p) => {
           </Button>
         </Span>
 
-        <Span class={s.viewPayTwo} mt={5}>
-          <Button disabled={allfood.length ? false : true} bgcolor="orange"
+        <Span class={s.viewPayTwo} mt={6}>
+          <Button disabled={allfood.length ? false : true} bgcolor="#08e"
             class={s.btnFinal}
             onPress={() => { p.navigation.navigate("Location", { allprice: p.allprice, allFoodTitle: p.allFoodTitle, description:description }) }}
           >
@@ -93,7 +93,7 @@ const FinallFoodPayment = (p) => {
         <Span>
         </Span>
       </Span>
-      <Modal show={openModal} setshow={setopenModal} style={{ width: '70%', maxWidth: 400 }} >
+      <Modal show={openModal} setshow={setopenModal} style={{ width: '70%', maxWidth: 400, height:'auto' }} >
         <Textarea onChangeText={setdescription} placeholder="توضیحات" maxLength={400} style={{ fontSize: 12, width: '80%' }} />
         <Span fd="row" >
           <Button ml={5} h={30} mt={7} onClick={()=>{setopenModal(false); description.trim() && setdescriptionLabel('توضیحات شما ثبت شد ✅')}} >تایید</Button>
