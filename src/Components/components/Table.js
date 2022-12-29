@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, ScrollView, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import spacePrice from '../../utils/spacePrice';
-import { Row, Span, P, Button, H1, H5, H6, FlatList } from '../Html';
+import { Row, Span, P, Button, H1, H5, H6, FlatList, Loading } from '../Html';
 
 
 
@@ -26,7 +26,7 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
   let textStyle = { color: color[2], textShadowColor: color[2] };
 
   const height = Dimensions.get('window').height
-
+const [index, setindex] = useState(0)
 
   if (!object)
     return (
@@ -56,7 +56,7 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
 
   else
     return (
-      <View style={{ width: w, marginTop: mt, alignItems: 'flex-start'}}>
+      <View style={{ width: w, marginTop: mt, alignItems: 'flex-start',maxHeight:'100%'}}>
         <Row fd='row-reverse' w='100%' alignSelf='center'>
           {header.map((f, i) => (<Th style={[bgColor(1)]} textStyle={[textStyle, { fontSize }]} key={i}>{f}</Th>))}
         </Row>
@@ -70,8 +70,9 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
                 style={{ width: '100%'}}
                 renderItem={({ item, index }) => (
 
-             <View style={{   flexDirection: 'row-reverse', width:'100%' }}>
-              {body.map((b, n) => (
+                  <>
+                  <View ref={()=>{setindex(index)}} style={{   flexDirection: 'row-reverse', width:'100%' }}>
+                {body.map((b, n) => (
                 btn1onClick && n === 0 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn1onClick(); }} style={[bgColor(index), btn1Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn1}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
                 btn2onClick && n === 1 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn2onClick(); }} style={[bgColor(index), btn2Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn2}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
                 btn3onClick && n === 2 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn3onClick(); }} style={[bgColor(index), btn3Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn3}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
@@ -83,9 +84,11 @@ function Table({children, fontSize, mt = 0, border = [], object, setobject, h, w
                 ))}
                 {children}
                 </View>
-        )}
+      
+</>
+      )}
         />
-          
+          { object[object.length - 1]?._id !== object[index]?._id && <ActivityIndicator style={{alignSelf:'center', transform:[{scale:1.2}]}}/>}
 
       </View>
     );

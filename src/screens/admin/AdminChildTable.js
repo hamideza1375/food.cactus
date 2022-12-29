@@ -12,11 +12,11 @@ const AdminChildTable = (p) => {
 
       <Span class={s.containChildTable} >
         <Button h={40} w='98%' alignSelf='center' mv={5} onPress={() => p.navigation.navigate("CreateChildFood", { id: p.route.params.id, title:p.route.params.title })}>ساخت </Button>
-        <Span h={'calc(100vh - 190px)'} class={s.containerChildTable}>
+        <Span webStyle={{height:'calc(100vh - 178px)'}} class={s.containerChildTable}>
           {!p.current ?
             <Loading />
             :
-            <Span style={{maxHeight:'90%'}} >
+            <Span webStyle={{maxHeight:"100%"}} >
 
             <Table
               color={['#555', '#656565', 'white']}

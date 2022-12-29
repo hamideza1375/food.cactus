@@ -639,7 +639,7 @@ export const home = (p) => {
         })();
       }, 15000);
 
-  }, [p.width])
+  }, [])
 
 
 

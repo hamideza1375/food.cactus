@@ -16,14 +16,14 @@ const Profile = (p) => {
         <Span class={s.viewUserImage}>
           <Span onClick={imgPicker} class={s.containImage}>
             {p.imageProfile ?
-              <Img src={{ uri: `${p.localhost}/upload/profile/${p.imageProfile}` }} class={s.profileImage} containClass={s.profileImage} />
+              <Img src={{ uri: `${p.localhost}/upload/profile/${p.imageProfile}` }} style={{backgroundColor:'transparent'}} class={s.profileImage} containClass={s.profileImage} />
               :
               <Span>
                 <Span class={s.iconPlusImage} nativeStyle={{ justifyContent: 'center', transform: [{ scale: .9 }] }} webStyle={{ width: 25, height: 27.5 }} >
                   <P ta='center' fs={18} >➕</P>
                 </Span>
 
-                <Img src={require("../../assets/images/user.jpg")} class={s.profileImage} containClass={s.profileImage} />
+                <Img src={require("../../assets/images/user.jpg")} style={{backgroundColor:'transparent'}} class={s.profileImage} containClass={s.profileImage} />
               </Span>
             }
             <Span style={{ top: 2 }} >
@@ -33,9 +33,9 @@ const Profile = (p) => {
         </Span>
         <Span w='70%'  >
           <Span class={s.containHeaderInfo} >
-            <B_icon icon='comment' size={.85} bgcolor='silver' />
-            <B_icon icon='comment' size={.85} bgcolor='silver' />
-            <B_icon icon='share-alt' size={.85} bgcolor='silver' onClick={async () => { share('http://localhost:3000', 'فسفود کاکتوس') }}
+            <B_icon icon='telegram' bgcolor='silver' />
+            <B_icon icon='instagram' size={.90} bgcolor='silver' />
+            <B_icon icon='share-alt' size={.80} bgcolor='silver' onClick={async () => { share('http://localhost:3000', 'فسفود کاکتوس') }}
             />
           </Span>
         </Span>

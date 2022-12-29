@@ -17,7 +17,7 @@ const AdminTitleAllFood = function (p) {
             !p.foods.length ?
               <Loading style={{ top: 30 }} animating={p.foods.length ? false : true} />
               :
-        <Span style={{maxHeight:'90%'}} >
+        <Span nativeStyle={{height:p.height - 150}} webStyle={{maxHeight:'calc(90vh - 75px)'}} >
 
               <Table
                 color={['#555', '#656565', 'white']}

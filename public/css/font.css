@@ -1,0 +1,9 @@
+
+  @font-face { src: url('../fonts/FontAwesome.ttf'); font-family: FontAwesome;  }
+  @font-face { src: url('../fonts/AntDesign.ttf'); font-family: AntDesign;  }
+  @font-face { src: url('../fonts/MaterialIcons.ttf'); font-family: MaterialIcons;  }
+  
+  @font-face { font-family: 'IRANSansWeb-FaNum'; src: url('../fonts/IRANSansWeb(FaNum).woff2') format('woff2')}
+  @font-face { font-family: 'IRANSansWeb'; src: url('../fonts/IRANSansWeb.ttf') format('truetype');}
+  @font-face { font-family: 'IRANSansWeb-Light'; src: url('../fonts/IRANSansWeb_Light.ttf') format('truetype');}
+  @font-face { font-family: 'IRANSansWeb-Bold'; src: url('../fonts/IRANSansWeb_Bold.ttf') format('truetype');}

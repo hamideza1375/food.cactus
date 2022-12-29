@@ -141,7 +141,7 @@ export const Press = (props) => <Component onPress={props.onClick} {...props} Co
 
 export const ImgBackground = (props) => <Component source={props.src} {...props} Component={ImageBackground} />
 
-export const Img = (props) => <Component source={props.src} {...props} Component={Image} />
+export const Img = (props) => <Component style={[{backgroundColor:'silver'}, props.style]} source={props.src} {...props} Component={Image} />
 
 export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 
