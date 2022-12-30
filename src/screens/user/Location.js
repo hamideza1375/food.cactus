@@ -68,8 +68,7 @@ const Location = (p) => {
 
       <div>
 
-      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="${localhost}/js/axios.js"></script>
       <script src="${localhost}/js/leaflet.js"></script>
       <script>
       
