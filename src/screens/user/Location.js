@@ -170,6 +170,7 @@ const Location = (p) => {
               marker.setLatLng({ lat: data[0].latitude, lng: data[0].longitude })
               marker.bindPopup(street.trim() ? street : '!پیدا نشد').openPopup()
               document.getElementById('address').value = street 
+              document.getElementById('bottomDiv').style.display = 'flex'
               search = ''
             }
             else marker.bindPopup('!پیدا نشد ').openPopup()
@@ -207,6 +208,17 @@ const Location = (p) => {
 
 
         async function sendPayment(){
+
+
+          if (
+            revers.longitude < 57.645 ||
+            revers.longitude > 57.711 ||
+            revers.latitude < 36.191 ||
+            revers.latitude > 36.239 ||
+            revers.streetName === "سبزوار - اسفراین"
+          ) alert('ارسال سفارش خارج از محدوده ی سبزوار امکان پذیر نمیباشد')
+
+          else{
           if(!document.getElementById('address').value) return alert('کادر آدرس را پر کنید')
          if(!document.getElementById('plaque').value || !document.getElementById('floor').value) return alert('کادر پلاک و طبقه را پر کنید')
           let {data, status} = await axios.post('${localhost}/confirmpayment?allprice=${p.allprice}', {
@@ -223,6 +235,8 @@ const Location = (p) => {
           if(status === 200) window.location.assign(data)
           else if(status === 385) alert('کادر پلاک و طبقه را پر کنید')
           else if(status === 500) alert('مشکلی از سمت سرور پیش آمد')
+}
+
 
         }
 

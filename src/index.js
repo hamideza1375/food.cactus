@@ -1,5 +1,7 @@
-import { AppRegistry } from 'react-native';
+import React from 'react'
+import ReactDOM from "react-dom/client";
 import App from './App';
+// import { AppRegistry } from 'react-native';
 
 const iconFontStyles =`
         @font-face { src: url(${require('./assets/fonts/FontAwesome.ttf')}); font-family: FontAwesome;  }
@@ -17,8 +19,14 @@ const style = document.createElement('style');
 style.appendChild(document.createTextNode(iconFontStyles));
 document.head.appendChild(style);
 
-AppRegistry.registerComponent('newprj1', () => App)
-AppRegistry.runApplication('newprj1', { rootTag: document.getElementById('root') });
+// AppRegistry.registerComponent('newprj1', () => App)
+// AppRegistry.runApplication('newprj1', { rootTag: document.getElementById('root') });
+
+
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render( <App />);
 
 
 

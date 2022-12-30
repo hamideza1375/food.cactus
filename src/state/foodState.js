@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
 import { Platform, PermissionsAndroid } from 'react-native';
 import backgroundTimer from '../utils/backgroundTimer'
-import { getLocation } from '../screens/user/getLocation/getLocation';
 import Geolocation from 'react-native-geolocation-service';
+import GetLocation from 'react-native-get-location';
 
 
 const beforeUnloadListener = (event) => {
@@ -672,17 +672,6 @@ export const home = (p) => {
 
 
 
-
-
-  if(navigator?.geolocation?.getCurrentPosition) 
-  navigator.geolocation.getCurrentPosition(
-   function(position) {
-     p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})
-   },
- )
-
-
-
   p.useEffect(() => {
     if (Platform.OS === 'android') {
       PermissionsAndroid.request(
@@ -708,6 +697,11 @@ export const home = (p) => {
        })
     }
     else if (Platform.OS === 'ios') {
+      GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+    })
+    .then(location => {
       Geolocation.getCurrentPosition(
         ({ coords }) => {
           p.setregion({ lat: coords.latitude, lng: coords.longitude, })
@@ -718,8 +712,21 @@ export const home = (p) => {
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
       )
-    }
+    })
+    .catch(error => {
+        const { code, message } = error;
+        console.warn(code, message);
+    })
 
+    }
+else{
+  if(navigator?.geolocation?.getCurrentPosition) 
+  navigator.geolocation.getCurrentPosition(
+   function(position) {
+     p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})
+   },
+ )
+}
   }, [])
 
 
