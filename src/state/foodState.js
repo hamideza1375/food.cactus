@@ -722,10 +722,16 @@ export const home = (p) => {
 else{
   if(navigator?.geolocation?.getCurrentPosition) 
   navigator.geolocation.getCurrentPosition(
-   function(position) {
-     p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})
-   },
- )
+    (position) =>{p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})},
+    (error)=>{console.log(error)},
+    {maximumAge:600000, timeout:5000, enableHighAccuracy: true}
+
+); 
+//   if(navigator?.geolocation?.getCurrentPosition) 
+//   navigator.geolocation.getCurrentPosition((position) =>{
+//     p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})},
+//     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+//  )
 }
   }, [])
 

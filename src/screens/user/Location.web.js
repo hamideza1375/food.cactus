@@ -190,11 +190,9 @@ else{
 
 		document.getElementById('btnGetLocation').onclick = async() => {
 
-
-
-
+			// if (!dataSave[0]) alert('موقعیت مکانیتان را به صورت دستی روشن کنید و دوباره امتحان کنید');
+		
 			if (dataSave[0]) {
-			
         if(!origin){
 			  marker.setLatLng({ lat: dataSave[0].latitude, lng: dataSave[0].longitude })
 				// map.setZoom(17)
@@ -213,7 +211,7 @@ else{
 
 
 
-			function onLocationError(e) { alert('مرورگر شما نمیتواند از سرویس موقعیت مکانی استفاده کند'); }
+			function onLocationError(e) { alert('موقعیت مکانیتان را به صورت دستی روشن کنید و دوباره امتحان کنید'); }
 			async function onLocationFound(e) {
 
 
