@@ -24,6 +24,10 @@ const Location = (p) => {
 		let marker = L.marker(mark, markerOption).addTo(map)
 
 
+
+		var myIcon2 = L.icon({ iconUrl: `${localhost}/images/circle.png`, iconSize: [17, 17] });
+		let markerOption2 = { draggable: false, icon: myIcon2 }
+		    var marker2 = L.marker(mark2, markerOption2).addTo(map)
         var circle1 = L.circle(mark2, 5).addTo(map);
         var circle2 = L.circle(mark2, 60).addTo(map);
 
@@ -34,12 +38,6 @@ const Location = (p) => {
 		var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 		map.addLayer(layer);
 
-		//  L.Routing.control({
-		// 	waypoints: [
-		// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
-		// 		L.latLng(36.225014234928924,57.69500965736432)
-		// 	]
-		// }).addTo(map)
 
 		let routing= origin && L.Routing.control({
 			waypoints: [
@@ -60,6 +58,7 @@ const Location = (p) => {
 			if (p.latlng.lat !== 36.225014234928924 || p.latlng.lng !== 57.69500965736432){
 		circle1.setLatLng(p.latlng)
 		circle2.setLatLng(p.latlng)
+		marker2.setLatLng(p.latlng)
 }
 
 			const response = await axios.post(`${localhost}/reverse`, JSON.stringify(mark), { headers: { 'Content-Type': 'application/json' } })
@@ -236,43 +235,35 @@ else{
 
 
 if(origin){
-					var newWaypoint = routing.getWaypoints()[0].latLng;
-					var newLat = e.latlng.lat;
-					var newLng = e.latlng.lng;
-					routing.setWaypoints([
-						 L.latLng(newLat, newLng),
-						 routing.options.waypoints[1]
-					 ]);
+					// var newWaypoint = routing.getWaypoints()[1].latLng;
+					// routing.setWaypoints([
+					// 	 L.latLng({ lat: origin.latitude, lng: origin.longitude } ),
+					// 	 L.latLng(e.latlng),
+					//  ]);
+
+
+					// var newWaypoint = routing.getWaypoints()[0].latLng;
+					// var newLat = e.latlng.lat;
+					// var newLng = e.latlng.lng;
+					// routing.setWaypoints([
+					// 	 L.latLng(newLat, newLng),
+					// 	 routing.options.waypoints[1]
+					//  ]);
+
+
+						routing.setWaypoints([
+							routing.options.waypoints[0],
+							 L.latLng(e.latlng)
+						 ]);
+
+
 
 }
 
 
-			// 	var newLat = routing.options.waypoints[0] = { lat: origin.latitude, lng: origin.longitude }
-			
-			// 	routing.options.waypoints=[
-			// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
-			// 		routing.options.waypoints[1]
-			// ]
-
-
-				// routing.control({
-				// 	waypoints: [
-				// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
-				// 		L.latLng(e.latlng)
-				// 	]
-				// }).addTo(map);
-
-
-				// L.Routing.control({
-				// 	waypoints: [
-				// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
-				// 		L.latLng(e.latlng)
-				// 	]
-				// }).addTo(map);
-
-
 		circle1.setLatLng(e.latlng)
 		circle2.setLatLng(e.latlng)
+		marker2.setLatLng(e.latlng)
 
 
 			}
