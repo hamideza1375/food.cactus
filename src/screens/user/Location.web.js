@@ -8,7 +8,7 @@ var map
 const Location = (p) => {
 
 	useEffect(() => {
-		require('../../other/leaflet/leaflet')
+		// require('../../other/leaflet/leaflet')
 
 		let dataSave;
 		const origin = p.route.params?.origin
@@ -34,6 +34,25 @@ const Location = (p) => {
 		var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 		map.addLayer(layer);
 
+		//  L.Routing.control({
+		// 	waypoints: [
+		// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
+		// 		L.latLng(36.225014234928924,57.69500965736432)
+		// 	]
+		// }).addTo(map)
+
+		let routing= origin && L.Routing.control({
+			waypoints: [
+				L.latLng({ lat: origin.latitude, lng: origin.longitude }),
+				L.latLng(p.latlng)
+			],
+				createMarker: function() { return null; },
+				routeWhileDragging: false,
+				draggableWaypoints: false,
+				reverseWaypoints: false,
+				fitSelectedRoutes: true,
+				addWaypoints: false
+		}).addTo(map);
 
 
 		// window.onload
@@ -216,6 +235,42 @@ else{
 
 
 
+if(origin){
+					var newWaypoint = routing.getWaypoints()[0].latLng;
+					var newLat = e.latlng.lat;
+					var newLng = e.latlng.lng;
+					routing.setWaypoints([
+						 L.latLng(newLat, newLng),
+						 routing.options.waypoints[1]
+					 ]);
+
+}
+
+
+			// 	var newLat = routing.options.waypoints[0] = { lat: origin.latitude, lng: origin.longitude }
+			
+			// 	routing.options.waypoints=[
+			// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
+			// 		routing.options.waypoints[1]
+			// ]
+
+
+				// routing.control({
+				// 	waypoints: [
+				// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
+				// 		L.latLng(e.latlng)
+				// 	]
+				// }).addTo(map);
+
+
+				// L.Routing.control({
+				// 	waypoints: [
+				// 		L.latLng({ lat: origin.latitude, lng: origin.longitude }),
+				// 		L.latLng(e.latlng)
+				// 	]
+				// }).addTo(map);
+
+
 		circle1.setLatLng(e.latlng)
 		circle2.setLatLng(e.latlng)
 
@@ -224,15 +279,19 @@ else{
 			map.on('locationfound', onLocationFound);
 			map.on('locationerror', onLocationError);
 
-   if(origin)
+   if(origin){
+		
 		    map.locate({ watch: true, setView: true })
-		}
+	}
+	}
 
+
+	
 
 		//!style
-		const mapStyle = document.createElement('style');
-		mapStyle.appendChild(document.createTextNode(styles));
-		document.head.appendChild(mapStyle);
+		// const mapStyle = document.createElement('style');
+		// mapStyle.appendChild(document.createTextNode(styles));
+		// document.head.appendChild(mapStyle);
 
 
 		return()=>{map.stopLocate()}

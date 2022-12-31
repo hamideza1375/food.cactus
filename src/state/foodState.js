@@ -719,8 +719,8 @@ export const home = (p) => {
     })
 
     }
-else{
-  if(navigator?.geolocation?.getCurrentPosition) 
+    else if (Platform.OS === 'web'){
+  if(navigator?.geolocation) 
   navigator.geolocation.getCurrentPosition(
     (position) =>{p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})},
     (error)=>{console.log(error)},
