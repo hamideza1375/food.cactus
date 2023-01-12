@@ -9,6 +9,7 @@ const Home = (p) => {
   p._food.getTitileFoods()
   p._food.setPagination()
   p._food.backHandler()
+  p._food.getSendPrice()
   p._user._token()
   p._user._tokenValue()
   p._user.getLastPayment()

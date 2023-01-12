@@ -9,7 +9,7 @@ import { useCallback, useMemo } from "react";
 import { useFocusEffect } from '@react-navigation/native';
 import { Keyboard, BackHandler, ToastAndroid, Platform, Dimensions, Animated, Text } from "react-native";
 import { verifycodeRegister, sendcode, verifycode, loginUser, registerUser, forgetpassword, resetpassword, sendProposal, getProposal, getLastPayment, deleteMultiProposal } from "../../services/userService"
-import { geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification } from '../../services/foodService'
+import { geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification,getSendPrice,SendPrice } from '../../services/foodService'
 import { getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable, senddisablePayment } from "../../services/adminService";
 import spacePrice from '../../utils/spacePrice';
 import { courseIdValidator } from '../../utils/IdValidator';
@@ -160,11 +160,15 @@ function State() {
   const [allFoodTitle, setallFoodTitle] = useState([])
   const [componentSendCode, setcomponentSendCode] = useState(false)
   const [min, setmin] = useState(0)
+  const [serverSendPrice, setserverSendPrice] = useState(10000)
+
+  
 
   const refInput = useRef()
   const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
 
   return {
+    serverSendPrice, setserverSendPrice,
     min, setmin,
     componentSendCode, setcomponentSendCode,
     allFoodTitle, setallFoodTitle,
@@ -174,7 +178,7 @@ function State() {
     useEffect,
     changeTitle, setchangeTitle, proposalId, setproposalId,
     verifycodeRegister, sendcode, verifycode, loginUser, registerUser, forgetpassword, resetpassword, sendProposal, getProposal, getLastPayment, deleteMultiProposal,
-    geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification,
+    geocode, reverse, sendProfile, getSingleTitleFoods, editcomment, deletecomment, getallchildfood, getfoods, getcommentchildfood, createcommentchildfood, getsinglechildfood, getcommentsinglefood, payment, getProfile, notification,getSendPrice,SendPrice,
     getAllAddress, deleteAddress, deleteAllAddress, useradmin, deleteAdmin, getAlluserAdmin, changeAdmin, createfood, editfood, deletefood, createchildfood, editchildfood, deletechildfood, createNotification, unAvailable, listAvailable,senddisablePayment,
     Keyboard, BackHandler, ToastAndroid, Platform, Dimensions,
     useMemo,

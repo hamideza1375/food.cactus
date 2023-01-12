@@ -28,6 +28,7 @@ import AddAdmin from "./screens/admin/AddAdmin";
 import DeleteAdmin from "./screens/admin/DeleteAdmin";
 import Notifee from './screens/admin/Notifee';
 import ChangeAdmin from "./screens/admin/ChangeAdmin";
+import SendPrice from "./screens/admin/SendPrice";
 import { Div, Input, Loading, P, Row, Span } from "./Components/Html";
 import { Init } from "./Components/Html";
 import { Layout, header } from "./other/Layout";
@@ -110,6 +111,9 @@ const Food = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAllAddress" options={{title: 'حذف آدرس ها', headerShown: true, header: (props) =><Row fd={'row'} style={[Platform.OS === 'ios' && { marginTop: 40 }, { width: '100%', justifyContent: 'center', backgroundColor: '#fff', marginBottom: 8 }]} ><Input border={[1, '#888']} h={42} m={'auto'} mv={10} w={'85%'} alignSelf='center' value={p.textSearch} onChangeText={(text) => { p.settextSearch(text); const fd = p._address.filter(f => f.fullname.includes(text) || f.phone == text); p.setallAddress(fd) }} p="جستجو" icon={'search'} />{<Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, left: -5, textAlign: 'center' }} size={27} />}</Row>}} {..._children(DeleteAllAddress)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="SendPrice" options={{ title: 'تایین هزینه ی پیک' }} {..._children(SendPrice)} />
+        
+
           </Tab.Group>
           <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
         </Tab.Navigator >
@@ -117,10 +121,10 @@ const Food = () => {
   )
 }
 
- propTypes(Home)
- propTypes(ChildFood)
- propTypes(SingleFood)
- propTypes(Register)
+propTypes(Home)
+propTypes(ChildFood)
+propTypes(SingleFood)
+propTypes(Register)
  propTypes(Login)
  propTypes(ForgetPass)
  propTypes(ResetPass)
@@ -145,6 +149,7 @@ const Food = () => {
  propTypes(DeleteAdmin)
  propTypes(DeleteAllAddress)
  propTypes(GetProposal)
+ propTypes(SendPrice)
 
 const linking = {
   prefixes: ['localhost:19006://', 'http://localhost:19006'],
@@ -178,6 +183,7 @@ const linking = {
       DeleteAdmin: 'DeleteAdmin',
       DeleteAllAddress: 'DeleteAllAddress',
       GetProposal:'GetProposal',
+      SendPrice:'SendPrice',
       NotFound: '*'
     },
   },

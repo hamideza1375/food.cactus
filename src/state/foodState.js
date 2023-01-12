@@ -198,9 +198,7 @@ export function foodState(p) {
       if(!find2)
       p.setallFoodTitle((food)=>food.concat(item.title))
       
-      console.log(p.allFoodTitle);
-
-
+      // console.log(p.allFoodTitle);
 
       if (!allfood[fnd]) {
         allfood.push(h[index])
@@ -535,12 +533,22 @@ export function foodState(p) {
   }
 
 
+  this.getSendPrice = async() => {
+   const {data} = await p.getSendPrice()
+   p.setserverSendPrice(data.sendPrice)
+  }
+
+  this.SendPrice = async() => {
+     await p.SendPrice({sendPrice:p.price})
+   }
+ 
+
 }
 
 
 
 
-//home
+//!home
 export const home = (p) => {
 
   const navigation = useNavigation()
@@ -724,7 +732,7 @@ export const home = (p) => {
   navigator.geolocation.getCurrentPosition(
     (position) =>{p.setlatlng({lat:position.coords.latitude,lng:position.coords.longitude})},
     (error)=>{console.log(error)},
-    {maximumAge:600000, timeout:5000, enableHighAccuracy: true}
+    {enableHighAccuracy: true, timeout:15000}
 
 ); 
 //   if(navigator?.geolocation?.getCurrentPosition) 

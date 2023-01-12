@@ -17,6 +17,8 @@ const FinallFoodPayment = (p) => {
   const minus = (index, item) => p._food.minusNum(index, item)
   const deleteAsyncStorage = () => p._food.deleteStorage()
 
+
+
   return (
     <Container class={s.viewHead} >
       <Span class={s.viewOne}>
@@ -38,7 +40,8 @@ const FinallFoodPayment = (p) => {
               />
               <Span>
                 <P fontSize={13.5} border={[.5, '#f70']} style={{ height: 33, flex: 1, paddingVertical: 5, textAlign: 'center', alignSelf: 'center', width: '99%' }} >قیمت کل: </P>
-                <P fontSize={13.5} border={[.5, '#f70']} style={{ height: 33, flex: 1, paddingVertical: 5, textAlign: 'center', alignSelf: 'center', width: '99%' }} >{p.spacePrice(inputPrice, null)} ت</P>
+                <P fontSize={13.5} border={[.5, '#f70']} style={{ color:'#0ac',height: 28, flex: 1, paddingVertical: 5, textAlign: 'center', alignSelf: 'center', width: '99%' }} >+{p.spacePrice(10000)} هزینه ی پیک</P>
+                <P fontSize={13.5} border={[.5, '#f70']} style={{ height: 33, flex: 1, paddingVertical: 5, textAlign: 'center', alignSelf: 'center', width: '99%' }} >{p.spacePrice(Number(inputPrice) + p.serverSendPrice, null)} ت</P>
               </Span>
             </Scroll>
           }
@@ -57,7 +60,7 @@ const FinallFoodPayment = (p) => {
         <Span class={s.viewPayTwo} mt={6}>
           <Button disabled={allfood.length ? false : true} bgcolor="#08e"
             class={s.btnFinal}
-            onPress={() => { p.navigation.navigate("Location", { allprice: p.allprice, allFoodTitle: p.allFoodTitle, description:description }) }}
+            onPress={() => { p.navigation.navigate("Location", { allprice: (Number(p.allprice) + p.serverSendPrice).toString(), allFoodTitle: p.allFoodTitle, description:description }) }}
           >
             پرداخت
           </Button>

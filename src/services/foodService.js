@@ -24,3 +24,6 @@ export const imagechat = async (data) => axios.post(`${localhost}/imagechat`, da
 // imageProfile
 export const sendProfile = async (data) => axios.post(`${localhost}/sendprofile`,data)
 export const getProfile = async (data) => axios.get(`${localhost}/getprofile`, data)
+
+export const getSendPrice = async (data) => axios.get(`${localhost}/getSendPrice`, data)
+export const SendPrice = async (data) => axios.post(`${localhost}/SendPrice`, data)
